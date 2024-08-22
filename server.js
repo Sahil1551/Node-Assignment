@@ -2,14 +2,17 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
-
+require('dotenv').config();
 app.use(bodyParser.json());
-
+const dbHost = process.env.MYSQL_ADDON_HOST;
+const dbUser = process.env.MYSQL_ADDON_USER;
+const dbPassword = process.env.MYSQL_ADDON_PASSWORD;
+const dbName = process.env.MYSQL_ADDON_DB;
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'SAhil@3007',
-  database: 'test'
+  host: dbHost,
+  user: dbUser,
+  password: dbPassword,
+  database: dbName
 });
 
 connection.connect((err) => {
